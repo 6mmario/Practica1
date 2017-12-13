@@ -1,0 +1,14 @@
+digraph listaUsuarios {
+rankdir = LR
+size = "60" 
+nodesep = 0.6
+"Mario \n 1234"->"Obed \n 4567"
+"Obed \n 4567"->"Morales \n 7891"
+"Morales \n 7891"->"Heber \n Pallaso"
+"Heber \n Pallaso"->"Mario \n 1234"
+"Heber \n Pallaso"->"Morales \n 7891"
+"Morales \n 7891"->"Obed \n 4567"
+"Obed \n 4567"->"Mario \n 1234"
+"Mario \n 1234"->"Heber \n Pallaso"
+
+}
