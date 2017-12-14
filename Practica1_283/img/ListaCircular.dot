@@ -21,17 +21,9 @@ cola1[ label = "2\n5"]
 "a \n a"->cola1 [constraint = false]
 subgraph cluster_1{
 cola2[ label = "2\n2"]
-cola1-> cola2 [constraint = false]
+cola1-> cola2
 color=blue
 label = "cola del Usuario: a"
-}
-cola3[ label = "5\n2"]
-"g \n g"->cola3 [constraint = false]
-subgraph cluster_2{
-cola4[ label = "3\n3"]
-cola3-> cola4 [constraint = false]
-color=blue
-label = "cola del Usuario: g"
 }
 
 }

@@ -185,34 +185,13 @@ namespace Practica1_283
             {
                 try
                 {
-                  //  string readText = File.ReadAllText(path);
                     string path = openFileDialog1.FileName;
-                    //Console.WriteLine(openFileDialog1.FileName);
                     string readText = File.ReadAllText(path);
-                    //Console.WriteLine(readText);
-
-                    //JsonTextReader reader = new JsonTextReader(new StringReader(readText));
-                    //while (reader.Read())
-                    //{
-                    //    if (reader.Value != null)
-                    //    {
-                    //        Console.WriteLine("Token IF: {0}, Value: {1}", reader.TokenType, reader.Value);
-                            
-                    //    }
-                    //    else
-                    //    {
-                    //        Console.WriteLine("Token ELSE: {0}", reader.TokenType);
-                    //    }
-
-                    //}
-
 
                     JObject googleSearch = JObject.Parse(readText);
 
-                    // get JSON result objects into a list
                     IList<JToken> results = googleSearch["archivo"]["cola"]["matrices"]["matriz"].Children().ToList();
 
-                    // serialize JSON results into .NET objects
                     IList<SearchResult> searchResults = new List<SearchResult>();
                     foreach (JToken result in results)
                     {
@@ -221,21 +200,13 @@ namespace Practica1_283
                     }
                     foreach (SearchResult item in searchResults)
                     {
-                        Console.WriteLine("inicio nodo cola");
-                        //Console.WriteLine(item.size_x);
-                        //Console.WriteLine(item.size_y);
-                        //Console.WriteLine(Usuario);
-                        //Console.WriteLine(Pasword);
                         lista.enqueue(Usuario, Pasword, 0, item.size_y, item.size_x);
-                        Console.WriteLine("Fin del Nodo cola");
                     }
-
-
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    //MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
         }
