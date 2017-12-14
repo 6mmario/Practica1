@@ -12,6 +12,7 @@ namespace Practica1_283
         public string pass;
         public Nodo next;
         public Nodo prev;
+        public NodoCola acces;
 
         public Nodo(string user, string pass)
         {
@@ -19,6 +20,7 @@ namespace Practica1_283
             this.pass = pass;
             this.next = null;
             this.prev = null;
+            this.acces = null;
         }
 
     }

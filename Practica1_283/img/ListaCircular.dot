@@ -1,14 +1,37 @@
 digraph listaUsuarios {
 rankdir = LR
-size = "60" 
+size = "100,100" 
 nodesep = 0.6
-"Mario \n 1234"->"Obed \n 4567"
-"Obed \n 4567"->"Morales \n 7891"
-"Morales \n 7891"->"Heber \n Pallaso"
-"Heber \n Pallaso"->"Mario \n 1234"
-"Heber \n Pallaso"->"Morales \n 7891"
-"Morales \n 7891"->"Obed \n 4567"
-"Obed \n 4567"->"Mario \n 1234"
-"Mario \n 1234"->"Heber \n Pallaso"
+splines=ortho
+"a \n a"->"b \n b"
+"b \n b"->"c \n c"
+"c \n c"->"d \n d"
+"d \n d"->"e \n e"
+"e \n e"->"f \n f"
+"f \n f"->"g \n g"
+"g \n g"->"a \n a"
+"g \n g"->"f \n f"
+"f \n f"->"e \n e"
+"e \n e"->"d \n d"
+"d \n d"->"c \n c"
+"c \n c"->"b \n b"
+"b \n b"->"a \n a"
+"a \n a"->"g \n g"
+cola1[ label = "2\n5"]
+"a \n a"->cola1 [constraint = false]
+subgraph cluster_1{
+cola2[ label = "2\n2"]
+cola1-> cola2 [constraint = false]
+color=blue
+label = "cola del Usuario: a"
+}
+cola3[ label = "5\n2"]
+"g \n g"->cola3 [constraint = false]
+subgraph cluster_2{
+cola4[ label = "3\n3"]
+cola3-> cola4 [constraint = false]
+color=blue
+label = "cola del Usuario: g"
+}
 
 }

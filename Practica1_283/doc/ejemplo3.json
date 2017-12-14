@@ -1,0 +1,51 @@
+{
+  "archivo": {
+    "cola": {
+      "matrices": {
+        "matriz": [
+          {
+            "size_x": "2",
+            "size_y": "5",
+            "valores": {
+              "valor": [
+                {
+                  "pos_x": "0",
+                  "pos_y": "1",
+                  "dato": "5"
+                },
+                {
+                  "pos_x": "3",
+                  "pos_y": "1",
+                  "dato": "1"
+                }
+              ]
+            }
+          },
+          {
+            "size_x": "3",
+            "size_y": "3",
+            "valores": {
+              "valor": [
+                {
+                  "pos_x": "0",
+                  "pos_y": "0",
+                  "dato": "1"
+                },
+                {
+                  "pos_x": "0",
+                  "pos_y": "1",
+                  "dato": "2"
+                },
+                {
+                  "pos_x": "1",
+                  "pos_y": "1",
+                  "dato": "4"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
