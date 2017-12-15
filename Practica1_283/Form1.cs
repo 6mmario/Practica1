@@ -11,12 +11,13 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft;
 using Newtonsoft.Json.Linq;
-    
+
 namespace Practica1_283
 {
     public partial class Form1 : Form
     {
         ListaCircular lista = new ListaCircular();
+        Matriz matriz = new Matriz();
         string Usuario;
         string Pasword;
 
@@ -37,7 +38,15 @@ namespace Practica1_283
             lista.add("e", "e");
             lista.add("f", "f");
             lista.add("g", "g");
-            
+            matriz.add(1, 2, 3);
+            matriz.add(2, 1, 2);
+            matriz.add(2, 3, 5);
+            matriz.add(3, 2, 9);
+            matriz.add(3, 4, 10);
+            matriz.add(2, 4, 1);
+            matriz.add(2, 2, 19);
+            matriz.recorrerFilas();
+            matriz.recorrerColumnas();
 
         }
 
@@ -77,7 +86,7 @@ namespace Practica1_283
                 }
                 else
                 {
-                   
+
                     tabPage1.Parent = tab;
                     Usuario = user;
                     Pasword = pass;
@@ -159,11 +168,11 @@ namespace Practica1_283
 
         private void graficaCircularToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lista.print();
-            Img i = new Img();
-            i.ShowDialog(this);
-           
-                        
+            lista.createDOT();
+            // Img i = new Img();
+            // i.ShowDialog(this);
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -179,19 +188,16 @@ namespace Practica1_283
             openFileDialog1.Filter = "JSON (*.json)|*.json";
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
-           
+
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                string path = openFileDialog1.FileName;
+                string readText = File.ReadAllText(path);
+                JObject googleSearch = JObject.Parse(readText);
                 try
                 {
-                    string path = openFileDialog1.FileName;
-                    string readText = File.ReadAllText(path);
-
-                    JObject googleSearch = JObject.Parse(readText);
-
                     IList<JToken> results = googleSearch["archivo"]["cola"]["matrices"]["matriz"].Children().ToList();
-
                     IList<SearchResult> searchResults = new List<SearchResult>();
                     foreach (JToken result in results)
                     {
@@ -200,13 +206,31 @@ namespace Practica1_283
                     }
                     foreach (SearchResult item in searchResults)
                     {
-                        lista.enqueue(Usuario, Pasword, 0, item.size_y, item.size_x);
+                        lista.enqueue(Usuario, Pasword, 0, item.size_x, item.size_y);
                     }
-
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    // MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
+
+                try
+                {
+                    IList<JToken> results1 = googleSearch["archivo"]["pila"]["matrices"]["matriz"].Children().ToList();
+                    IList<SearchResult> searchResults1 = new List<SearchResult>();
+                    foreach (JToken result in results1)
+                    {
+                        SearchResult searchResult = JsonConvert.DeserializeObject<SearchResult>(result.ToString());
+                        searchResults1.Add(searchResult);
+                    }
+                    foreach (SearchResult item in searchResults1)
+                    {
+                        lista.push(Usuario, Pasword, 0, item.size_x, item.size_y);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
         }

@@ -15,8 +15,8 @@ namespace Practica1_283
         private Nodo last;
         private NodoCola front;
         private NodoCola final;
-
-        Cola cola;
+        private NodoPila top;
+        
 
         private int size;
         private string text = "";
@@ -40,18 +40,6 @@ namespace Practica1_283
         }
         #endregion
 
-        #region VacioQ
-        private bool isEmptyQ()
-        {
-            if (front == null)
-            {
-                return true;
-            }
-
-            return false;
-        }
-        #endregion
-
         #region Agregar
         public void add(string user, string pass)
         {
@@ -65,6 +53,8 @@ namespace Practica1_283
                 {
                     first = news;
                     last = news;
+                    first.prev = last;
+                    last.next = first;
                     size++;
                 }
                 else
@@ -98,6 +88,7 @@ namespace Practica1_283
                 final = news;
                 encontrado.acces = front;
                 encontrado.acces = final;
+                
                 //size++;
             }
             else
@@ -106,6 +97,27 @@ namespace Practica1_283
                 final = news;
                 //size++;
             }
+        }
+        #endregion
+
+        #region PUSH
+        public void push(string user, string pass, int date, int col, int row)
+        {
+            NodoPila news = new NodoPila(date, col, row);
+            Nodo Encontrado = search(user, pass);
+
+            if (Encontrado.acces1 == null)
+            {
+                top = news;
+                Encontrado.acces1 = top;
+            }
+            else
+            {
+                news.next = top;
+                top = news;
+                Encontrado.acces1 = top;
+            }
+
         }
         #endregion
 
@@ -215,10 +227,6 @@ namespace Practica1_283
         public void print()
         {
             Nodo aux = first;
-            Nodo aux2 = last;
-            Nodo aux3 = first;
-            Nodo aux4 = first;
-
             text = "";
 
             if (isEmpty())
@@ -227,76 +235,84 @@ namespace Practica1_283
             }
             else
             {
-                if (size == 1)
+                //Grafica de la lista Circular
+                text = text + "subgraph cluster_lc {" + Environment.NewLine;
+                text = text + "node [margin=0 fontname=Marvel fontsize=14 width=0.5 shape=rectangle ]" + Environment.NewLine;
+                do
                 {
-                    int inc = 1;
-                    text = "ci " + "[label =\"" + aux.user + " \\n " + aux.pass + "\"]" + Environment.NewLine;
+                    text = text + "\"" + aux.user + " \\n " + aux.pass + "\"" + "->" + "\"" + aux.next.user + " \\n " + aux.next.pass + "\" [dir = \"both\"]" + Environment.NewLine;
+                    aux = aux.next;
+                } while (aux != first);
+                text = text + "color=green" + Environment.NewLine;
+                text = text + "label = \"Lista Circular de Usuario\"" + Environment.NewLine;
+                text = text + "}" + Environment.NewLine;
 
-                    if (aux3.acces != null)
-                    {
-                        text = text + "subgraph cluster_0 {" + Environment.NewLine;
-                        text = text + "ci" + inc + " [label =\"" + aux3.acces.col + " \\n " + aux3.acces.row + "\"]" + Environment.NewLine;
-                        text = text + "ci" + "->" + "ci" + inc + Environment.NewLine;
-                        do
-                        {
-                            inc++;
-                            text = text + "ci" + inc + " [ label=\"" + aux3.acces.next.col + " \\n " + aux3.acces.next.row + "\"]" + Environment.NewLine;
-                            text = text + "ci" + (inc - 1) + "->" + "ci" + inc + Environment.NewLine;
-                            aux3.acces = aux3.acces.next;
-                        } while (aux3.acces.next != null);
-                        text = text + "label = \"cola del Usuario: " + aux.user + "\"";
-                        text = text + "}";
-                    }
-
-                }
-                else
-                {
-                    do
-                    {
-                        text = text + "\"" + aux.user + " \\n " + aux.pass + "\"" + "->" + "\"" + aux.next.user + " \\n " + aux.next.pass + "\"" + Environment.NewLine;
-                        aux = aux.next;
-                    } while (aux != first);
-
-                    do
-                    {
-                        text = text + "\"" + aux2.user + " \\n " + aux2.pass + "\"" + "->" + "\"" + aux2.prev.user + " \\n " + aux2.prev.pass + "\"" + Environment.NewLine;
-                        aux2 = aux2.prev;
-                    } while (aux2 != last);
-
-                    int co = 1;
-                    int inc = 1;
-                    do
-                    {
-
-                        if (aux4.acces != null)
-                        {
-                            text = text + "cola" + co + "[ label = \"" + aux4.acces.col + "\\n" + aux4.acces.row + "\"]" + Environment.NewLine;
-                            text = text + "\"" + aux4.user + " \\n " + aux4.pass + "\"" + "->" + "cola" + co + " [constraint = false]" + Environment.NewLine;
-                            co++;
-                            text = text + "subgraph cluster_" + inc + "{" + Environment.NewLine;
-
-                            do
-                            {
-                                text = text + "cola" + co + "[ label = \"" + aux4.acces.next.col + "\\n" + aux4.acces.next.row + "\"]" + Environment.NewLine;
-                                text = text + "cola" + (co - 1) + "-> cola" + co + Environment.NewLine;
-                                co++;
-                                aux4.acces = aux4.acces.next;
-                            } while (aux4.acces.next != null);
-                            text = text + "color=blue" + Environment.NewLine;
-                            text = text + "label = \"cola del Usuario: " + aux4.user + "\"" + Environment.NewLine;
-                            text = text + "}" + Environment.NewLine;
-                            inc++;
-                        }
-
-                        aux4 = aux4.next;
-                    } while (aux4 != first);
-                }
+                printCola();
+                printPila();
             }
-
-
-            createDOT();
+            //createDOT();
         }
         #endregion
+
+        public void printCola()
+        {
+            Nodo aux = first;
+
+            int co = 1;
+            int inc = 1;
+            do
+            {
+                if (aux.acces != null)
+                {
+                    text = text + "cola" + co + "[ label = \"" + aux.acces.col + "\\n" + aux.acces.row + "\"]" + Environment.NewLine;
+                    text = text + "\"" + aux.user + " \\n " + aux.pass + "\"" + "->" + "cola" + co + " [constraint = false]" + Environment.NewLine;
+                    co++;
+                    text = text + "subgraph cluster_c" + inc + "{" + Environment.NewLine;
+                    do
+                    {
+                        text = text + "cola" + co + "[ label = \"" + aux.acces.next.col + "\\n" + aux.acces.next.row + "\"]" + Environment.NewLine;
+                        text = text + "cola" + (co - 1) + "-> cola" + co + Environment.NewLine;
+                        co++;
+                        aux.acces = aux.acces.next;
+                    } while (aux.acces.next != null);
+                    text = text + "color=blue" + Environment.NewLine;
+                    text = text + "label = \"cola del Usuario: " + aux.user + "\"" + Environment.NewLine;
+                    text = text + "}" + Environment.NewLine;
+                    inc++;
+                }
+                aux = aux.next;
+            } while (aux != first);
+        }
+
+
+        public void printPila()
+        {
+            Nodo aux = first;
+
+            int inc = 1;
+            int pi = 1;
+            do
+            {
+                if (aux.acces1 != null)
+                {
+                    text = text + "pila" + pi + "[ label = \"" + aux.acces1.col + "\\n" + aux.acces1.row + "\"]" + Environment.NewLine;
+                    text = text + "\"" + aux.user + " \\n " + aux.pass + "\"" + "->" + "pila" + pi + " [constraint = false]" + Environment.NewLine;
+                    pi++;
+                    text = text + "subgraph cluster_p" + inc + "{" + Environment.NewLine;
+                    do
+                    {
+                        text = text + "pila" + pi + "[ label = \"" + aux.acces1.next.col + "\\n" + aux.acces1.next.row + "\"]" + Environment.NewLine;
+                        text = text + "pila" + (pi - 1) + "-> pila" + pi + " [constraint = false]" + Environment.NewLine;
+                        pi++;
+                        aux.acces1 = aux.acces1.next;
+                    } while (aux.acces1.next != null);
+                    text = text + "color=red" + Environment.NewLine;
+                    text = text + "label = \"pila del Usuario: " + aux.user + "\"" + Environment.NewLine;
+                    text = text + "}" + Environment.NewLine;
+                    inc++;
+                }
+            } while (aux != first);
+        }
 
         #region CrearDOT
         public void createDOT()
@@ -314,6 +330,8 @@ namespace Practica1_283
             File.AppendAllText(path, "size = \"100,100\" " + Environment.NewLine);
             File.AppendAllText(path, "nodesep = 0.6" + Environment.NewLine);
             File.AppendAllText(path, "splines=ortho" + Environment.NewLine);
+            File.AppendAllText(path, "fontname = Marvel" + Environment.NewLine);
+            print();
             File.AppendAllText(path, text + Environment.NewLine);
             File.AppendAllText(path, "}");
 

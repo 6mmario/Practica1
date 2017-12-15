@@ -3,27 +3,4 @@ rankdir = LR
 size = "100,100" 
 nodesep = 0.6
 splines=ortho
-"a \n a"->"b \n b"
-"b \n b"->"c \n c"
-"c \n c"->"d \n d"
-"d \n d"->"e \n e"
-"e \n e"->"f \n f"
-"f \n f"->"g \n g"
-"g \n g"->"a \n a"
-"g \n g"->"f \n f"
-"f \n f"->"e \n e"
-"e \n e"->"d \n d"
-"d \n d"->"c \n c"
-"c \n c"->"b \n b"
-"b \n b"->"a \n a"
-"a \n a"->"g \n g"
-cola1[ label = "2\n5"]
-"a \n a"->cola1 [constraint = false]
-subgraph cluster_1{
-cola2[ label = "2\n2"]
-cola1-> cola2
-color=blue
-label = "cola del Usuario: a"
-}
-
-}
+fontname = Marvel

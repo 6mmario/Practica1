@@ -72,8 +72,11 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Matriz.cs" />
     <Compile Include="Nodo.cs" />
     <Compile Include="NodoCola.cs" />
+    <Compile Include="NodoM.cs" />
+    <Compile Include="NodoPila.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

@@ -6,23 +6,19 @@ using System.Threading.Tasks;
 
 namespace Practica1_283
 {
-    public class NodoCola
+    public class NodoPila
     {
         public int date;
         public int col;
         public int row;
-        public NodoCola next;
+        public NodoPila next;
 
-        public Matriz ma;
-
-
-        public NodoCola(int date, int col, int row)
+        public NodoPila(int date, int col, int row)
         {
             this.date = date;
             this.col = col;
             this.row = row;
             this.next = null;
-            this.ma = null;
         }
     }
 }

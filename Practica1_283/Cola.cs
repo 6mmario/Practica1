@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace Practica1_283
 {
-    class Cola
+    public class Cola
     {
         private NodoCola front;
         private NodoCola final;

@@ -51,8 +51,8 @@
       "matrices": {
         "matriz": [
           {
-            "size_x": "5",
-            "size_y": "2",
+            "size_x": "3",
+            "size_y": "3",
             "valores": {
               "valor": [
                 {
@@ -69,8 +69,8 @@
             }
           },
           {
-            "size_x": "2",
-            "size_y": "2",
+            "size_x": "3",
+            "size_y": "5",
             "valores": {
               "valor": [
                 {
