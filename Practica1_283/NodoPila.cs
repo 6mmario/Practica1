@@ -13,12 +13,15 @@ namespace Practica1_283
         public int row;
         public NodoPila next;
 
+        public Matriz ma;
+
         public NodoPila(int date, int col, int row)
         {
             this.date = date;
             this.col = col;
             this.row = row;
             this.next = null;
+            this.ma = null;
         }
     }
 }

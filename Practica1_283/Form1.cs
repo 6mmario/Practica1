@@ -38,15 +38,15 @@ namespace Practica1_283
             lista.add("e", "e");
             lista.add("f", "f");
             lista.add("g", "g");
-            matriz.add(1, 2, 3);
-            matriz.add(2, 1, 2);    
-            matriz.add(2, 3, 5);
-            matriz.add(3, 2, 9);
-            matriz.add(3, 4, 10);
-            matriz.add(2, 4, 1);
-            matriz.add(2, 2, 19);
-            matriz.recorrerFilas();
-            matriz.recorrerColumnas();
+            //matriz.add(1, 2, 3);
+            //matriz.add(2, 1, 2);
+            //matriz.add(2, 3, 5);
+            //matriz.add(3, 2, 9);
+            //matriz.add(3, 4, 10);
+            //matriz.add(2, 4, 1);
+            //matriz.add(2, 2, 19);
+            //matriz.recorrerFilas();
+            //matriz.recorrerColumnas();
 
         }
 
@@ -130,8 +130,11 @@ namespace Practica1_283
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(null, Usuario + "-" + Pasword, "Datos");
+            
             lista.delete(Usuario, Pasword);
+            MessageBox.Show(null, "El Usuario " + Usuario +" Se ha eliminado", "Eliminado");
+            Usuario = "";
+            Pasword = "";
             tabPage1.Parent = null;
             login.Parent = tab;
         }
@@ -169,8 +172,8 @@ namespace Practica1_283
         private void graficaCircularToolStripMenuItem_Click(object sender, EventArgs e)
         {
             lista.createDOT(1, Usuario, Pasword);
-            // Img i = new Img();
-            // i.ShowDialog(this);
+            //Img i = new Img();
+            //i.ShowDialog(this);
 
 
         }
@@ -240,8 +243,10 @@ namespace Practica1_283
             lista.createDOT(0, Usuario, Pasword);
         }
 
-
-
+        private void button5_Click(object sender, EventArgs e)
+        {
+            lista.prueba();
+        }
 
     }
     public class SearchResult

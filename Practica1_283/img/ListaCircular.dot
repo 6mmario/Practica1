@@ -4,21 +4,32 @@ size = "100,100"
 nodesep = 0.6
 splines=ortho
 fontname = Marvel
+subgraph cluster_lc {
+node [margin=0 fontname=Marvel fontsize=14 width=0.5 shape=rectangle ]
+"a \n a"->"c \n c" [dir = "both"]
+"c \n c"->"d \n d" [dir = "both"]
+"d \n d"->"e \n e" [dir = "both"]
+"e \n e"->"f \n f" [dir = "both"]
+"f \n f"->"g \n g" [dir = "both"]
+"g \n g"->"a \n a" [dir = "both"]
+color=green
+label = "Lista Circular de Usuario"
+}
 cola1[ label = "3\n3"]
-"c \n c"->cola1 [constraint = false]
+"g \n g"->cola1 [constraint = false]
 subgraph cluster_c1{
 cola2[ label = "3\n5"]
 cola1-> cola2
 color=blue
-label = "cola del Usuario: c"
+label = "cola del Usuario: g"
 }
 pila1[ label = "2\n2"]
-"c \n c"->pila1 [constraint = false]
+"g \n g"->pila1 [constraint = false]
 subgraph cluster_p1{
 pila2[ label = "5\n2"]
 pila1-> pila2 [constraint = false]
 color=red
-label = "pila del Usuario: c"
+label = "pila del Usuario: g"
 }
 
 }

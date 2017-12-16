@@ -17,7 +17,6 @@ namespace Practica1_283
         private NodoCola final;
         private NodoPila top;
 
-
         private int size;
         private string text = "";
 
@@ -106,10 +105,13 @@ namespace Practica1_283
             NodoPila news = new NodoPila(date, col, row);
             Nodo Encontrado = search(user, pass);
 
+
+
             if (Encontrado.acces1 == null)
             {
                 top = news;
                 Encontrado.acces1 = top;
+
             }
             else
             {
@@ -118,6 +120,29 @@ namespace Practica1_283
                 Encontrado.acces1 = top;
             }
 
+
+            addMatriz(news, col, row);
+        }
+        #endregion
+
+        #region Agregar Matriz
+        public void addMatriz(NodoPila news, int col, int row)
+        {
+            Matriz matriz;
+            if (news.ma == null)
+            {
+                matriz = new Matriz();
+                matriz.add(1, 2, 3);
+                matriz.add(2, 1, 2);
+                matriz.add(2, 3, 5);
+                matriz.add(3, 2, 9);
+                matriz.add(3, 4, 10);
+                matriz.add(2, 4, 1);
+                matriz.add(2, 2, 19);
+                // matriz.recorrerFilas();
+                // matriz.recorrerColumnas();
+                news.ma = matriz;
+            }
         }
         #endregion
 
@@ -223,11 +248,11 @@ namespace Practica1_283
         }
         #endregion
 
-        #region Imprimir
+        #region Imprimir Circular
         public void print()
         {
             Nodo aux = first;
-          //  text = "";
+            //  text = "";
 
             if (isEmpty())
             {
@@ -250,9 +275,10 @@ namespace Practica1_283
         }
         #endregion
 
+        #region Imprimir Cola
         public void printCola(string usuario, string contrasenia)
         {
-            
+
 
             int co = 1;
             int inc = 1;
@@ -308,10 +334,12 @@ namespace Practica1_283
                 }
 
             }
-            
+
         }
 
+        #endregion
 
+        #region Imprimir Pila
         public void printPila(string usuario, string contrasenia)
         {
             int inc = 1;
@@ -321,7 +349,7 @@ namespace Practica1_283
             {
                 Nodo aux = first;
 
-               
+
                 do
                 {
                     if (aux.acces1 != null)
@@ -372,9 +400,10 @@ namespace Practica1_283
 
 
             }
-            
+
 
         }
+        #endregion
 
         #region CrearDOT
         public void createDOT(int a, string usuario, string contrasenia)
@@ -397,15 +426,15 @@ namespace Practica1_283
             if (a == 1)
             {
                 print();
-                printCola(usuario, contrasenia);
-                printPila(usuario, contrasenia);
+                printCola(null, null);
+                printPila(null, null);
             }
             else
             {
                 printCola(usuario, contrasenia);
                 printPila(usuario, contrasenia);
             }
-            
+
             File.AppendAllText(path, text + Environment.NewLine);
             File.AppendAllText(path, "}");
 
@@ -427,6 +456,37 @@ namespace Practica1_283
             //// Open the file to read from.
             //string readText = File.ReadAllText(path);
             //Console.WriteLine(readText);
+        }
+        #endregion
+
+        #region Prueba Matriz
+
+        public void prueba()
+        {
+            Nodo encontrado = search("a", "a");
+            if (encontrado != null)
+            {
+                Console.WriteLine(Environment.NewLine + "Encontrado es: " + encontrado.user + Environment.NewLine
+                + "Contrase;a es: " + encontrado.pass + Environment.NewLine);
+                NodoPila temp = encontrado.acces1;
+                if (temp != null)
+                {
+                    Console.WriteLine("Primer Nodo de la Pila es: " + temp.date + Environment.NewLine
+                        + "Columnas: " + temp.col + Environment.NewLine
+                        + "Filas: " + temp.row + Environment.NewLine);
+                }
+
+                Matriz temp1 = encontrado.acces1.ma;
+                if (temp1 != null)
+                {
+                    Console.WriteLine("Tiene algo en la matriz" + Environment.NewLine);
+                    temp1.recorrerColumnas();
+                    Console.WriteLine(Environment.NewLine + "Creo que me salio.. " +
+                        Environment.NewLine + "Obed Sos un Crack" + Environment.NewLine);
+
+                }
+
+            }
         }
         #endregion
 
