@@ -45,6 +45,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -53,7 +54,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graficaCircularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.tab.SuspendLayout();
             this.login.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -133,7 +134,7 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Font = new System.Drawing.Font("Mission Gothic Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.Font = new System.Drawing.Font("Mission Gothic Black", 12F);
             this.btnRegistrar.Location = new System.Drawing.Point(561, 216);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(95, 30);
@@ -154,7 +155,7 @@
             // 
             // btnIngresar
             // 
-            this.btnIngresar.Font = new System.Drawing.Font("Mission Gothic Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIngresar.Font = new System.Drawing.Font("Mission Gothic Black", 12F);
             this.btnIngresar.Location = new System.Drawing.Point(217, 216);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(95, 30);
@@ -235,6 +236,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.button1);
@@ -245,6 +247,16 @@
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Usuario";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(6, 6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(96, 34);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Importar";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -320,15 +332,15 @@
             this.graficaCircularToolStripMenuItem.Text = "Grafica Circular";
             this.graficaCircularToolStripMenuItem.Click += new System.EventHandler(this.graficaCircularToolStripMenuItem_Click);
             // 
-            // button3
+            // button4
             // 
-            this.button3.Location = new System.Drawing.Point(6, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 34);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Importar";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button4.Location = new System.Drawing.Point(118, 6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(96, 34);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Reporte";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
@@ -384,6 +396,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem graficaCircularToolStripMenuItem;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
 
     }
 }

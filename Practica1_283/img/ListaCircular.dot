@@ -4,3 +4,21 @@ size = "100,100"
 nodesep = 0.6
 splines=ortho
 fontname = Marvel
+cola1[ label = "3\n3"]
+"c \n c"->cola1 [constraint = false]
+subgraph cluster_c1{
+cola2[ label = "3\n5"]
+cola1-> cola2
+color=blue
+label = "cola del Usuario: c"
+}
+pila1[ label = "2\n2"]
+"c \n c"->pila1 [constraint = false]
+subgraph cluster_p1{
+pila2[ label = "5\n2"]
+pila1-> pila2 [constraint = false]
+color=red
+label = "pila del Usuario: c"
+}
+
+}

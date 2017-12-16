@@ -39,7 +39,7 @@ namespace Practica1_283
             lista.add("f", "f");
             lista.add("g", "g");
             matriz.add(1, 2, 3);
-            matriz.add(2, 1, 2);
+            matriz.add(2, 1, 2);    
             matriz.add(2, 3, 5);
             matriz.add(3, 2, 9);
             matriz.add(3, 4, 10);
@@ -168,7 +168,7 @@ namespace Practica1_283
 
         private void graficaCircularToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lista.createDOT();
+            lista.createDOT(1, Usuario, Pasword);
             // Img i = new Img();
             // i.ShowDialog(this);
 
@@ -234,6 +234,13 @@ namespace Practica1_283
                 }
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            lista.createDOT(0, Usuario, Pasword);
+        }
+
+
 
 
     }
